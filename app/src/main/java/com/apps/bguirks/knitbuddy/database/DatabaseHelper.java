@@ -3,7 +3,6 @@ package com.apps.bguirks.knitbuddy.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.apps.bguirks.knitbuddy.database.handlers.CategoryHandler;
 import com.apps.bguirks.knitbuddy.database.handlers.InstructionHandler;

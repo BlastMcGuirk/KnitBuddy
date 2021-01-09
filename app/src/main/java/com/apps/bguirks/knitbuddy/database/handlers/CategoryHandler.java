@@ -108,17 +108,15 @@ public class CategoryHandler implements Handler<Category> {
     }
 
     @Override
-    public long update(Category category) {
+    public void update(Category category) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(CATEGORY_NAME, category.getCategory());
 
-        long id = db.update(TABLE_NAME, values, ID + "=?",
+        db.update(TABLE_NAME, values, ID + "=?",
                 new String[] { String.valueOf(category.get_id()) });
         db.close();
-
-        return id;
     }
 
     @Override

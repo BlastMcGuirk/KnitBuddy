@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.apps.bguirks.knitbuddy.database.DatabaseHelper;
 import com.apps.bguirks.knitbuddy.database.dataobjects.Instruction;
-import com.apps.bguirks.knitbuddy.database.dataobjects.Project;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +151,7 @@ public class InstructionHandler implements Handler<Instruction> {
     }
 
     @Override
-    public long update(Instruction instruction) {
+    public void update(Instruction instruction) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -162,11 +161,9 @@ public class InstructionHandler implements Handler<Instruction> {
         values.put(COMPLETED, instruction.getCompleted());
         values.put(COUNTER, instruction.getCounter());
 
-        long id = db.update(TABLE_NAME, values, ID + "=?",
+        db.update(TABLE_NAME, values, ID + "=?",
                 new String[] { String.valueOf(instruction.get_id()) });
         db.close();
-
-        return id;
     }
 
     @Override

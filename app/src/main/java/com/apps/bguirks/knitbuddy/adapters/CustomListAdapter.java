@@ -1,5 +1,6 @@
 package com.apps.bguirks.knitbuddy.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -47,11 +48,13 @@ public class CustomListAdapter extends BaseAdapter {
         return instructions.get(position).get_id();
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert layoutInflater != null;
             convertView = layoutInflater.inflate(R.layout.instruction_item, null);
         }
 

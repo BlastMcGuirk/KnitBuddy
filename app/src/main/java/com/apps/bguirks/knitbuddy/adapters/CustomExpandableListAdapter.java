@@ -1,5 +1,6 @@
 package com.apps.bguirks.knitbuddy.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.apps.bguirks.knitbuddy.database.dataobjects.Project;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -30,7 +32,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int listPosition, int expandedListPosition) {
-        return this.expandableListDetail.get(this.expandableListCategories.get(listPosition))
+        return Objects.requireNonNull(this.expandableListDetail.get(this.expandableListCategories.get(listPosition)))
                 .get(expandedListPosition);
     }
 
@@ -39,6 +41,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         return expandedListPosition;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
@@ -46,6 +49,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert layoutInflater != null;
             convertView = layoutInflater.inflate(R.layout.list_item, null);
         }
         TextView expandedListTextView = convertView
@@ -56,7 +60,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListCategories.get(listPosition))
+        return Objects.requireNonNull(this.expandableListDetail.get(this.expandableListCategories.get(listPosition)))
                 .size();
     }
 
@@ -75,6 +79,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         return listPosition;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
@@ -82,6 +87,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert layoutInflater != null;
             convertView = layoutInflater.inflate(R.layout.list_group, null);
         }
         TextView listTitleTextView = convertView

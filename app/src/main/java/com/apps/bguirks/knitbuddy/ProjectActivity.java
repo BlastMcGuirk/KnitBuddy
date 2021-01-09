@@ -1,7 +1,6 @@
 package com.apps.bguirks.knitbuddy;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +18,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.apps.bguirks.knitbuddy.adapters.CustomExpandableListAdapter;
 import com.apps.bguirks.knitbuddy.adapters.CustomListAdapter;
 import com.apps.bguirks.knitbuddy.database.DatabaseHelper;
 import com.apps.bguirks.knitbuddy.database.dataobjects.Category;
@@ -117,20 +115,25 @@ public class ProjectActivity extends AppCompatActivity implements View.OnFocusCh
         findViewById(R.id.yarn_brand_edit).setOnFocusChangeListener(this);
         findViewById(R.id.yarn_size_edit).setOnFocusChangeListener(this);
 
+        ListView instructionsList = findViewById(R.id.instructionsList);
+        for (int i = 0; i < instructionsList.getChildCount(); i++) {
+            View v = instructionsList.getChildAt(i);
+            v.findViewById(R.id.instruction_edit).setOnFocusChangeListener(this);
+        }
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.edit_project:
-                this.editing = !this.editing;
-                item.setTitle(this.editing ? "Save" : "Edit");
-                item.setShowAsAction(this.editing ? MenuItem.SHOW_AS_ACTION_ALWAYS : MenuItem.SHOW_AS_ACTION_NEVER);
-                if (!this.editing) {
-                    updateAndSaveInfo();
-                }
-                toggleViews();
+        if (item.getItemId() == R.id.edit_project) {
+            this.editing = !this.editing;
+            item.setTitle(this.editing ? "Save" : "Edit");
+            item.setShowAsAction(this.editing ? MenuItem.SHOW_AS_ACTION_ALWAYS : MenuItem.SHOW_AS_ACTION_NEVER);
+            if (!this.editing) {
+                updateAndSaveInfo();
+            }
+            toggleViews();
         }
         return true;
     }
@@ -251,6 +254,7 @@ public class ProjectActivity extends AppCompatActivity implements View.OnFocusCh
     public void onFocusChange(View v, boolean hasFocus) {
         if(!hasFocus) {
             InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         }
     }

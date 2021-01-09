@@ -1,5 +1,7 @@
 package com.apps.bguirks.knitbuddy.database.dataobjects;
 
+import androidx.annotation.NonNull;
+
 public class Project implements Comparable<Project> {
 
     // Database ID - PRIMARY KEY
@@ -103,6 +105,7 @@ public class Project implements Comparable<Project> {
         return projectName.compareTo(o.projectName);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return projectName;

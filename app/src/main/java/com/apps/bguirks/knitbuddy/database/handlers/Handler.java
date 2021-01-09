@@ -12,7 +12,7 @@ public interface Handler<T> {
     long add(T obj);
     T get(long id);
     List<T> getAll();
-    long update(T obj);
+    void update(T obj);
     void delete(long id);
 
 }

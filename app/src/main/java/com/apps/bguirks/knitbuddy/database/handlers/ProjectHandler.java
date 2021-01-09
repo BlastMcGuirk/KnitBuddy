@@ -156,7 +156,7 @@ public class ProjectHandler implements Handler<Project> {
     }
 
     @Override
-    public long update(Project project) {
+    public void update(Project project) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -167,11 +167,9 @@ public class ProjectHandler implements Handler<Project> {
         values.put(YARN_BRAND, project.getYarnBrand());
         values.put(YARN_SIZE, project.getYarnSize());
 
-        long id = db.update(TABLE_NAME, values, ID + "=?",
+        db.update(TABLE_NAME, values, ID + "=?",
                 new String[] { String.valueOf(project.get_id()) });
         db.close();
-
-        return id;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.apps.bguirks.knitbuddy.database.dataobjects;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 public class Category implements Comparable<Category> {
@@ -53,6 +55,7 @@ public class Category implements Comparable<Category> {
         return Objects.hash(_id, category);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return category;

@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.apps.bguirks.knitbuddy.adapters.CustomExpandableListAdapter;
 import com.apps.bguirks.knitbuddy.database.DatabaseHelper;
@@ -24,11 +22,10 @@ import com.apps.bguirks.knitbuddy.database.dataobjects.Category;
 import com.apps.bguirks.knitbuddy.database.dataobjects.Project;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,69 +98,67 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_button:
-                new AlertDialog.Builder(mainActivityContext)
-                        .setTitle("Add New Item")
-                        .setItems(new String[]{"Category", "Project", "Cancel"}, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    // Category
-                                    case 0:
-                                        dialog.cancel();
+        if (item.getItemId() == R.id.add_button) {
+            new AlertDialog.Builder(mainActivityContext)
+                    .setTitle("Add New Item")
+                    .setItems(new String[]{"Category", "Project", "Cancel"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                // Category
+                                case 0:
+                                    dialog.cancel();
 
-                                        final EditText categoryInput = new EditText(mainActivityContext);
-                                        categoryInput.setInputType(InputType.TYPE_CLASS_TEXT);
-                                        new AlertDialog.Builder(mainActivityContext)
-                                                .setTitle("Category Name")
-                                                .setView(categoryInput)
-                                                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        String categoryName = categoryInput.getText().toString();
-                                                        db.categories.add(new Category(categoryName));
-                                                        refreshData();
-                                                    }
-                                                })
-                                                .setNegativeButton("Cancel", null)
-                                                .show();
-                                        break;
-                                    // Project
-                                    case 1:
-                                        dialog.cancel();
+                                    final EditText categoryInput = new EditText(mainActivityContext);
+                                    categoryInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                                    new AlertDialog.Builder(mainActivityContext)
+                                            .setTitle("Category Name")
+                                            .setView(categoryInput)
+                                            .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    String categoryName = categoryInput.getText().toString();
+                                                    db.categories.add(new Category(categoryName));
+                                                    refreshData();
+                                                }
+                                            })
+                                            .setNegativeButton("Cancel", null)
+                                            .show();
+                                    break;
+                                // Project
+                                case 1:
+                                    dialog.cancel();
 
-                                        final EditText projectInput = new EditText(mainActivityContext);
-                                        projectInput.setInputType(InputType.TYPE_CLASS_TEXT);
-                                        new AlertDialog.Builder(mainActivityContext)
-                                                .setTitle("Project Name")
-                                                .setView(projectInput)
-                                                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        String projectName = projectInput.getText().toString();
-                                                        long defaultCategoryId = db.categories.getAll().get(0).get_id();
-                                                        Project newProject = new Project(projectName, defaultCategoryId);
-                                                        long projectId = db.projects.add(newProject);
+                                    final EditText projectInput = new EditText(mainActivityContext);
+                                    projectInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                                    new AlertDialog.Builder(mainActivityContext)
+                                            .setTitle("Project Name")
+                                            .setView(projectInput)
+                                            .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    String projectName = projectInput.getText().toString();
+                                                    long defaultCategoryId = db.categories.getAll().get(0).get_id();
+                                                    Project newProject = new Project(projectName, defaultCategoryId);
+                                                    long projectId = db.projects.add(newProject);
 
-                                                        // Open the project
-                                                        Intent switchToProject = new Intent(mainActivityContext, ProjectActivity.class);
-                                                        switchToProject.putExtra("PROJECT_ID", projectId);
+                                                    // Open the project
+                                                    Intent switchToProject = new Intent(mainActivityContext, ProjectActivity.class);
+                                                    switchToProject.putExtra("PROJECT_ID", projectId);
 
-                                                        startActivity(switchToProject);
-                                                    }
-                                                })
-                                                .setNegativeButton("Cancel", null)
-                                                .show();
-                                        break;
-                                    // Cancel
-                                    default:
-                                        dialog.cancel();
-                                }
+                                                    startActivity(switchToProject);
+                                                }
+                                            })
+                                            .setNegativeButton("Cancel", null)
+                                            .show();
+                                    break;
+                                // Cancel
+                                default:
+                                    dialog.cancel();
                             }
-                        })
-                        .show();
-                break;
+                        }
+                    })
+                    .show();
         }
         return true;
     }
@@ -186,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                                         int groupPosition, int childPosition, long id) {
                 Intent switchToProject = new Intent(mainActivityContext, ProjectActivity.class);
 
-                Project project = listViewData.get(categories.get(groupPosition)).get(childPosition);
+                Project project = Objects.requireNonNull(listViewData.get(categories.get(groupPosition))).get(childPosition);
                 switchToProject.putExtra("PROJECT_ID", project.get_id());
 
                 startActivity(switchToProject);
@@ -200,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
                     int groupPosition = ExpandableListView.getPackedPositionGroup(id);
                     int childPosition = ExpandableListView.getPackedPositionChild(id);
-                    final Project project = listViewData.get(categories.get(groupPosition))
+                    final Project project = Objects.requireNonNull(listViewData.get(categories.get(groupPosition)))
                             .get(childPosition);
 
                     new AlertDialog.Builder(mainActivityContext)
