@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         this.mainActivityContext = this;
         setContentView(R.layout.activity_main);
 
-        System.out.println("CREATE");
-
         // Setup Database
         db = new DatabaseHelper(this);
         if (db.categories.getTableCount() == 0) {
@@ -78,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("RESUME");
 
         // Get the data from the database
         listViewData = getListViewData();

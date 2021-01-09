@@ -1,129 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ProjectActivity"
     android:layout_margin="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
 
-        <!-- Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/title_value"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="30dp"
-            android:text="Mark's Hat"
-            android:textSize="40dp"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/title_edit"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="30dp"
-            android:text="Mark's Hat"
-            android:textSize="40dp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_value"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="40sp"
+                android:textAlignment="center"
+                android:layout_gravity="center"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_edit"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="30dp"
+                android:textSize="40sp"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
 
-        <!-- Category -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category:"
-            android:textSize="20sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/category_value"
-            android:layout_marginBottom="30dp" />
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/category_edit"
-            android:layout_marginBottom="30dp"
-            android:visibility="gone"/>
+            <!-- Category -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category:"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/category_value"
+                android:layout_marginBottom="30dp" />
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/category_edit"
+                android:layout_marginBottom="30dp"
+                android:visibility="gone"/>
 
-        <!-- Needle Type -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Needle Type:"
-            android:textSize="20sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/needle_type_value"
-            android:layout_marginBottom="30dp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/needle_type_edit"
-            android:layout_marginBottom="30dp"
-            android:visibility="gone" />
+            <!-- Needle Type -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Needle Type:"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/needle_type_value"
+                android:layout_marginBottom="30dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/needle_type_edit"
+                android:layout_marginBottom="30dp"
+                android:visibility="gone" />
 
-        <!-- Needle Size -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Needle Size:"
-            android:textSize="20sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/needle_size_value"
-            android:layout_marginBottom="30dp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/needle_size_edit"
-            android:layout_marginBottom="30dp"
-            android:visibility="gone" />
+            <!-- Needle Size -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Needle Size:"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/needle_size_value"
+                android:layout_marginBottom="30dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/needle_size_edit"
+                android:layout_marginBottom="30dp"
+                android:visibility="gone" />
 
-        <!-- Yarn Brand -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yarn Brand:"
-            android:textSize="20sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/yarn_brand_value"
-            android:layout_marginBottom="30dp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/yarn_brand_edit"
-            android:layout_marginBottom="30dp"
-            android:visibility="gone" />
+            <!-- Yarn Brand -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yarn Brand:"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yarn_brand_value"
+                android:layout_marginBottom="30dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yarn_brand_edit"
+                android:layout_marginBottom="30dp"
+                android:visibility="gone" />
 
-        <!-- Yarn Size -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yarn Size:"
-            android:textSize="20sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/yarn_size_value" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/yarn_size_edit"
-            android:layout_marginBottom="30dp"
-            android:visibility="gone" />
+            <!-- Yarn Size -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yarn Size:"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yarn_size_value" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yarn_size_edit"
+                android:layout_marginBottom="30dp"
+                android:visibility="gone" />
 
-    </LinearLayout>
+            <!-- BREAK LINE -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
-</ScrollView>
+            <!-- Instructions -->
+            <!--
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/instructionsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+-->
+            <ListView
+                android:id="@+id/instructionsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/add_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:text="+"
+                android:layout_alignParentBottom="true" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

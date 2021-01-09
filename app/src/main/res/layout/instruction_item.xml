@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/instruction_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:paddingStart="10dp">
+
+            <TextView
+                android:id="@+id/step_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="1"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/instruction_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
+                android:paddingEnd="40dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:text="K2P2 x 40"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp" />
+            <EditText
+                android:id="@+id/instruction_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:text="K2P2 x 40"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/dropdown"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:src="@drawable/baseline_arrow_drop_down_black_18dp"
+            android:focusable="true"
+            android:contentDescription="Dropdown Menu" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="24"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/minus_count_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:layout_marginEnd="10dp"/>
+
+        <Button
+            android:id="@+id/plus_count_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+" />
+
+    </LinearLayout>
+
+</LinearLayout>
