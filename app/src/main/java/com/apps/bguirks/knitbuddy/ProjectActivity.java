@@ -168,12 +168,12 @@ public class ProjectActivity extends AppCompatActivity implements View.OnFocusCh
         findViewById(R.id.needle_size_value).setVisibility(visibility);
         findViewById(R.id.yarn_brand_value).setVisibility(visibility);
         findViewById(R.id.yarn_size_value).setVisibility(visibility);
+
         ListView instructionsList = findViewById(R.id.instructionsList);
         for (int i = 0; i < instructionsList.getChildCount(); i++) {
             View v = instructionsList.getChildAt(i);
             v.findViewById(R.id.instruction_value).setVisibility(visibility);
         }
-        //findViewById(R.id.instruction_value).setVisibility(visibility);
 
         visibility = this.editing ? View.VISIBLE : View.GONE;
 
@@ -183,7 +183,7 @@ public class ProjectActivity extends AppCompatActivity implements View.OnFocusCh
         findViewById(R.id.needle_size_edit).setVisibility(visibility);
         findViewById(R.id.yarn_brand_edit).setVisibility(visibility);
         findViewById(R.id.yarn_size_edit).setVisibility(visibility);
-        //findViewById(R.id.instruction_edit).setVisibility(visibility);
+
         for (int i = 0; i < instructionsList.getChildCount(); i++) {
             View v = instructionsList.getChildAt(i);
             v.findViewById(R.id.instruction_edit).setVisibility(visibility);

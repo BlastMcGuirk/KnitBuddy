@@ -113,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
                                     case 0:
                                         dialog.cancel();
 
-                                        final EditText input = new EditText(mainActivityContext);
-                                        input.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        final EditText categoryInput = new EditText(mainActivityContext);
+                                        categoryInput.setInputType(InputType.TYPE_CLASS_TEXT);
                                         new AlertDialog.Builder(mainActivityContext)
                                                 .setTitle("Category Name")
-                                                .setView(input)
+                                                .setView(categoryInput)
                                                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                        String categoryName = input.getText().toString();
+                                                        String categoryName = categoryInput.getText().toString();
                                                         db.categories.add(new Category(categoryName));
                                                         refreshData();
                                                     }
@@ -131,7 +131,30 @@ public class MainActivity extends AppCompatActivity {
                                         break;
                                     // Project
                                     case 1:
-                                        Toast.makeText(mainActivityContext, "Project", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+
+                                        final EditText projectInput = new EditText(mainActivityContext);
+                                        projectInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                                        new AlertDialog.Builder(mainActivityContext)
+                                                .setTitle("Project Name")
+                                                .setView(projectInput)
+                                                .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        String projectName = projectInput.getText().toString();
+                                                        long defaultCategoryId = db.categories.getAll().get(0).get_id();
+                                                        Project newProject = new Project(projectName, defaultCategoryId);
+                                                        long projectId = db.projects.add(newProject);
+
+                                                        // Open the project
+                                                        Intent switchToProject = new Intent(mainActivityContext, ProjectActivity.class);
+                                                        switchToProject.putExtra("PROJECT_ID", projectId);
+
+                                                        startActivity(switchToProject);
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancel", null)
+                                                .show();
                                         break;
                                     // Cancel
                                     default:
